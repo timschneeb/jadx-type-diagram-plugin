@@ -74,7 +74,7 @@ public class IconProvider {
 
 	public static FlatSVGIcon openSvgIcon(String name) {
 		String iconPath = "icons/" + name + ".svg";
-		FlatSVGIcon icon = new FlatSVGIcon(iconPath);
+		FlatSVGIcon icon = new FlatSVGIcon(iconPath, IconProvider.class.getClassLoader());
 		boolean found;
 		try {
 			found = icon.hasFound();
