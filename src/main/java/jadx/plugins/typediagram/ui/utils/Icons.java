@@ -2,10 +2,11 @@ package jadx.plugins.typediagram.ui.utils;
 
 import javax.swing.ImageIcon;
 import static jadx.plugins.typediagram.ui.utils.IconProvider.openSvgIcon;
+import static jadx.plugins.typediagram.ui.utils.IconProvider.openSvgIconFromJadx;
 
 public class Icons {
-	public static final ImageIcon METHOD = openSvgIcon("nodes/method");
-	public static final ImageIcon FIELD = openSvgIcon("nodes/field");
+	public static final ImageIcon METHOD = openSvgIconFromJadx("nodes/method");
+	public static final ImageIcon FIELD = openSvgIconFromJadx("nodes/field");
 
 	public static final ImageIcon RESET_ZOOM = openSvgIcon("typediagram/actualZoom");
 	public static final ImageIcon ZOOM_IN = openSvgIcon("typediagram/zoomIn");

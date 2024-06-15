@@ -22,6 +22,9 @@ dependencies {
 	implementation("org.netbeans.api:org-openide-util:RELEASE220")
 	implementation("org.netbeans.api:org-openide-util-lookup:RELEASE220")
 
+	implementation("com.formdev:flatlaf:3.4.1")
+	implementation("com.formdev:flatlaf-extras:3.4.1")
+
 	implementation("com.google.code.findbugs:jsr305:3.0.2")
 
 	testImplementation("ch.qos.logback:logback-classic:1.4.14")

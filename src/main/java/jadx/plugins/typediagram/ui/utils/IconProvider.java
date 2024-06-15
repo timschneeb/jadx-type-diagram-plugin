@@ -1,5 +1,6 @@
 package jadx.plugins.typediagram.ui.utils;
 
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 import jadx.api.JavaClass;
 import jadx.core.utils.exceptions.JadxRuntimeException;
 
@@ -59,7 +60,7 @@ public class IconProvider {
 		}
 	}
 
-	public static ImageIcon openSvgIcon(String name) {
+	public static ImageIcon openSvgIconFromJadx(String name) {
 		try {
 			Class<?> cl = Class.forName("jadx.gui.utils.UiUtils");
 			Method mth = cl.getMethod("openSvgIcon", String.class);
@@ -69,6 +70,21 @@ public class IconProvider {
 			System.err.println("ERROR: GraphSceneImpl: " + ex.getMessage());
 			throw new JadxRuntimeException("Failed to load icon: " + name, ex);
 		}
+	}
+
+	public static FlatSVGIcon openSvgIcon(String name) {
+		String iconPath = "icons/" + name + ".svg";
+		FlatSVGIcon icon = new FlatSVGIcon(iconPath);
+		boolean found;
+		try {
+			found = icon.hasFound();
+		} catch (Exception e) {
+			throw new JadxRuntimeException("Failed to load icon: " + iconPath, e);
+		}
+		if (!found) {
+			throw new JadxRuntimeException("Icon not found: " + iconPath);
+		}
+		return icon;
 	}
 
 	private static Image toImage(Icon icon) {
