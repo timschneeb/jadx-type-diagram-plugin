@@ -27,11 +27,11 @@ jobs:
       - name: Build JADX
         run: cd ./jadx && ./gradlew copyArtifacts
 
-      - name: Move jadx.jar
+      - name: Move JADX JAR
         run: mv ./jadx/build/jadx/lib/jadx-dev-all.jar ./jadx.jar
 
-      - name: Build plugin
-        run: ./gradlew assemble
+      - name: Build plugin JAR
+        run: ./gradlew shadowJar
 
       - name: Test plugin
         run: ./gradlew test
