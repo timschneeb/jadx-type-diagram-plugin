@@ -18,13 +18,28 @@ jobs:
           distribution: temurin
           java-version: 11
 
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@v3
+      - name: Clone JADX
+        uses: actions/checkout@v4
         with:
-          arguments: build
+          repository: skylot/jadx
+          path: jadx
+
+      - name: Build JADX
+        run: cd ./jadx && ./gradlew copyArtifacts
+
+      - name: Move jadx.jar
+        run: mv ./jadx/build/jadx/lib/jadx-dev-all.jar ./jadx.jar
+
+      - name: Build plugin
+        run: ./gradlew assemble
+
+      - name: Test plugin
+        run: ./gradlew test
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: jadx-type-diagram-plugin
           path: .
+
+
