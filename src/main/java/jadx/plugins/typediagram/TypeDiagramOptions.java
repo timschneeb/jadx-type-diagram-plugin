@@ -16,13 +16,13 @@ public class TypeDiagramOptions extends BasePluginOptionsBuilder {
 
 		option(JadxTypeDiagramPlugin.PLUGIN_ID + ".initial-zoom", float.class)
 				.description("Initial zoom level")
-				.defaultValue(2.0f)
+				.defaultValue(1.0f)
 				.formatter(String::valueOf)
 				.parser(s -> {
 					try {
 						return Float.parseFloat(s);
 					} catch (NumberFormatException e) {
-						return 2.0f;
+						return 1.0f;
 					}
 				})
 				.setter(v -> initialZoom = v);
