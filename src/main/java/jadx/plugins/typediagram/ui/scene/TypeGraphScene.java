@@ -3,7 +3,6 @@ package jadx.plugins.typediagram.ui.scene;
 import jadx.api.JavaClass;
 import jadx.api.plugins.JadxPluginContext;
 import jadx.core.dex.instructions.args.ArgType;
-import jadx.core.dex.nodes.RootNode;
 import jadx.plugins.typediagram.TypeDiagramOptions;
 import jadx.plugins.typediagram.model.AccessFlagFilters;
 import jadx.plugins.typediagram.model.BaseEdge;
@@ -28,7 +27,6 @@ import org.netbeans.api.visual.export.SceneExporter;
 import org.netbeans.api.visual.graph.GraphScene;
 import org.netbeans.api.visual.graph.layout.GraphLayout;
 import org.netbeans.api.visual.graph.layout.GraphLayoutFactory;
-import org.netbeans.api.visual.graph.layout.GraphLayoutSupport;
 import org.netbeans.api.visual.layout.LayoutFactory;
 import org.netbeans.api.visual.layout.SceneLayout;
 import org.netbeans.api.visual.widget.ConnectionWidget;
@@ -50,7 +48,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.BiConsumer;
 
 public class TypeGraphScene extends GraphScene<BaseNode, BaseEdge> {
 

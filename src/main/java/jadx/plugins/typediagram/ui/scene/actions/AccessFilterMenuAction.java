@@ -6,7 +6,6 @@ import jadx.plugins.typediagram.ui.utils.ActionHandler;
 import jadx.plugins.typediagram.ui.utils.Icons;
 
 import javax.swing.AbstractButton;
-import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JToggleButton;

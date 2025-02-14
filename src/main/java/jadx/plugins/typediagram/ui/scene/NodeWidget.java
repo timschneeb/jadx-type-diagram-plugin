@@ -12,7 +12,6 @@ import jadx.plugins.typediagram.model.AccessFlagFilters;
 import jadx.plugins.typediagram.model.BaseNode;
 import org.netbeans.api.visual.action.WidgetAction;
 import org.netbeans.api.visual.border.Border;
-import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.SeparatorWidget;
 import org.netbeans.api.visual.widget.Widget;
 import org.netbeans.modules.visual.experimental.widget.general.ListItemWidget;

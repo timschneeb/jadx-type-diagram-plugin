@@ -2,9 +2,7 @@ package jadx.plugins.typediagram.ui.scene.actions;
 
 import jadx.plugins.typediagram.ui.utils.ActionHandler;
 import jadx.plugins.typediagram.ui.utils.Icons;
-import jadx.plugins.typediagram.ui.utils.UiUtils;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
