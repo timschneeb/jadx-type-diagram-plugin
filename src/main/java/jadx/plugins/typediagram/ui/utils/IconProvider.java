@@ -2,6 +2,7 @@ package jadx.plugins.typediagram.ui.utils;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import jadx.api.JavaClass;
+import jadx.core.dex.info.AccessInfo;
 import jadx.core.utils.exceptions.JadxRuntimeException;
 
 import javax.annotation.Nullable;
@@ -14,65 +15,44 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Window;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
+
+import static jadx.plugins.typediagram.ui.utils.Icons.*;
 
 public class IconProvider {
 
 	@Nullable
 	public static Image resolveImageForClass(JavaClass cls) {
-		return resolveImageFor(cls, "jadx.gui.treemodel.JClass");
-	}
+		AccessInfo accessInfo = cls.getAccessInfo();
 
-	@Nullable
-	public static Image resolveImageForField(JavaClass cls) {
-		return resolveImageFor(cls, "jadx.gui.treemodel.JField");
-	}
-
-	@Nullable
-	public static Image resolveImageForMethod(JavaClass cls) {
-		return resolveImageFor(cls, "jadx.gui.treemodel.JMethod");
-	}
-
-	@Nullable
-	public static Image resolveImageFor(JavaClass cls, String className) {
-		try {
-			Class<?> cl = Class.forName(className);
-			Constructor<?> cons = cl.getConstructor(JavaClass.class, cl);
-			Object jclass = cons.newInstance(cls, null);
-			Icon icon = (Icon) cl.getMethod("getIcon").invoke(jclass);
-			return icon.getIconHeight() <= 0 || icon.getIconWidth() <= 0 ? null : toImage(icon);
+		Icon icon;
+		if (accessInfo.isEnum()) {
+			icon = ENUM;
+		} else if (accessInfo.isAnnotation()) {
+			icon = ANNOTATION;
+		} else if (accessInfo.isInterface()) {
+			icon = INTERFACE;
+		} else if (accessInfo.isAbstract()) {
+			icon = CLASS_ABSTRACT;
+		} else if (accessInfo.isProtected()) {
+			icon = CLASS_PROTECTED;
+		} else if (accessInfo.isPrivate()) {
+			icon = CLASS_PRIVATE;
+		} else {
+			icon = accessInfo.isPublic() ? CLASS_PUBLIC : CLASS;
 		}
-		catch (Exception ex) {
-			System.err.println("ERROR: GraphSceneImpl: " + ex.getMessage());
-			return null;
-		}
+		return toImage(icon);
 	}
 
 	public static void setWindowIcons(Window window) {
 		try {
-			Class<?> cl = Class.forName("jadx.gui.utils.UiUtils");
-			Method mth = cl.getMethod("setWindowIcons", Window.class);
-			mth.invoke(null, window);
+			jadx.gui.utils.UiUtils.setWindowIcons(window);
 		}
 		catch (Exception ex) {
 			System.err.println("ERROR: GraphSceneImpl: " + ex.getMessage());
 		}
 	}
 
-	public static ImageIcon openSvgIconFromJadx(String name) {
-		try {
-			Class<?> cl = Class.forName("jadx.gui.utils.UiUtils");
-			Method mth = cl.getMethod("openSvgIcon", String.class);
-			return (ImageIcon) mth.invoke(null, name);
-		}
-		catch (Exception ex) {
-			System.err.println("ERROR: GraphSceneImpl: " + ex.getMessage());
-			throw new JadxRuntimeException("Failed to load icon: " + name, ex);
-		}
-	}
-
-	public static FlatSVGIcon openSvgIcon(String name) {
+	public static FlatSVGIcon openBuiltinSvgIcon(String name) {
 		String iconPath = "icons/" + name + ".svg";
 		FlatSVGIcon icon = new FlatSVGIcon(iconPath, IconProvider.class.getClassLoader());
 		boolean found;
