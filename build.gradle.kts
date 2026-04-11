@@ -12,7 +12,7 @@ plugins {
 
 dependencies {
 	// use compile only scope to exclude jadx-core and its dependencies from result jar
-	val jadxVersion = "1.5.2-SNAPSHOT"
+	val jadxVersion = "1.5.5-SNAPSHOT"
 	val isJadxSnapshot = jadxVersion.endsWith("-SNAPSHOT")
 
 	// use compile only scope to exclude jadx-core and its dependencies from result jar
