@@ -43,6 +43,7 @@ dependencies {
 repositories {
     mavenCentral()
     maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots/")
+    maven(url = "https://repo1.maven.org/maven2/")
     google()
 }
 
