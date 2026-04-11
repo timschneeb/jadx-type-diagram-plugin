@@ -10,7 +10,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Set up JDK
         uses: actions/setup-java@v5
@@ -19,7 +19,7 @@ jobs:
           java-version: 17
 
       - name: Clone JADX
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: skylot/jadx
           path: jadx
@@ -37,7 +37,7 @@ jobs:
         run: ./gradlew test
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: jadx-type-diagram-plugin
           path: ./build/libs/*.jar
